@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Codenames</title>
+
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div class="wrapper">
+        <aside class="">
+            <button class="setupBtn" onclick="setup()">Nur Geheimdienstchefs hinschauen!!!</button>
+            <button class="playGameBtn" onclick="playGame()" style="display: none;">Start Game</button>
+            <div class="teamPlayingColor"></div>
+            <div class="redTeamCount"></div>
+            <div class="blueTeamCount"></div>
+            <button class="endTurnBtn" onclick="endTurn()" style="display: none;">End turn</button>
+        </aside>
+
+        <main class="matrix"></main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
