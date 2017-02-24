@@ -107,7 +107,7 @@ function setup() {
     console.log(sid);
     var encodedString = btoa(sid);
 
-    var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`http://192.168.178.31:3000/chief.html?sid=${encodedString}`)}`;
+    var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`https://lifeofqui.github.io/boardgames/codenames/app/chief.html?sid=${encodedString}`)}`;
     document.querySelector('.qrCodeImg').src = qrCodeImg;
 }
 
