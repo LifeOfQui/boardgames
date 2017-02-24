@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <title>Secret service chief</title>
     <style>
         html, body {
@@ -11,9 +12,30 @@
             padding: 0;
             text-align: center;
         }
+
+        .overlay {
+            background-color: lightgrey;
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay-text {
+            /* TODO text hübsch */
+            font-family: Roboto;
+            font-weight: 300;
+        }
+
         .matrix {
             display: inline-block;
         }
+
         .codeWord {
             float: left;
             outline: 1px solid #000;
@@ -38,6 +60,13 @@
     </style>
 </head>
 <body>
+    <div class="overlay">
+        <div class="overlay-text">
+            <strong>SECRET SERVICE CHIEF</strong>
+            <hr />
+            Klicken um die Felder anzuzeigen
+        </div>
+    </div>
     <div class="matrix"></div>
     
     <script src="./assets/scripts/chief.js" charset="utf-8"></script>
