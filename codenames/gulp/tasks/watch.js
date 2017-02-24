@@ -7,7 +7,7 @@ gulp.task('watch', function () {
         notify: false,
         server: {
             baseDir: "app",
-            index: "chief.html"
+            index: "player.html"
         }
     });
 

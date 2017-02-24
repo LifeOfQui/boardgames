@@ -35,10 +35,10 @@ function setup() {
 
     document.querySelector('.matrix').innerHTML = '';
 
-    var matrixArr = generateRandomNumberArray(25, codeWords.length);
+    const matrixArr = generateRandomNumberArray(25, codeWords.length);
     const arr2 = [...matrixArr];
     let randomIndexes = shuffleArray(arr2);
-    var firstTeamArr = randomIndexes.splice(0, 9);
+    const firstTeamArr = randomIndexes.splice(0, 9);
     const secondTeamArr = randomIndexes.splice(0, 8);
     const blackArr = randomIndexes.splice(0, 1);
 
@@ -106,8 +106,9 @@ function setup() {
 
     console.log(sid);
     var encodedString = btoa(sid);
-
-    var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`https://lifeofqui.github.io/boardgames/codenames/app/chief.html?sid=${encodedString}`)}`;
+    var path = `${window.location.protocol + '//' + window.location.host + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
+    console.log(path);
+    var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`${path}/chief.html?sid=${encodedString}`)}`;
     document.querySelector('.qrCodeImg').src = qrCodeImg;
 }
 
