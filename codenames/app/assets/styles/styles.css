@@ -1,0 +1,80 @@
+:root {
+    --max-size: 34;
+    --min-size: 18;
+    --diff: calc(var(--max-size) - var(--min-size));
+    --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
+}
+
+aside {
+    text-align: center;
+}
+
+aside > * {
+    padding: 20px 0;
+}
+
+
+.codeWord {
+   float: left;
+   width: 16%;
+   text-align: center;
+   border: 1px solid #000;
+   margin: 20px 10px;
+   padding: 20px 0;
+   font-size: 28px;
+}
+
+@supports (display: grid) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+        grid-template-rows: auto auto;
+        grid-row-gap: 20px;
+        grid-column-gap: 1em;
+    }
+
+    .matrix {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        grid-row-gap: 20px;
+        grid-column-gap: 1em;
+    }
+
+    .codeWord {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
+.codeWord {
+    text-align: center;
+    border: 1px solid #000;
+    font-size: var(--responsive);
+    padding: 3vw 0;
+    cursor: pointer;
+}
+
+.red {
+    background-color: #f0f;
+}
+
+.blue {
+    background-color: #00f;
+}
+
+.black {
+    color: white;
+    background-color: #000;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.invisible {
+    background-color: transparent;
+    color: black;
+}

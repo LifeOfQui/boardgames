@@ -13,7 +13,6 @@ aside > * {
     padding: 20px 0;
 }
 
-
 .codeWord {
    float: left;
    width: 16%;
@@ -24,19 +23,25 @@ aside > * {
    font-size: 28px;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
     .wrapper {
+        display: -ms-grid;
         display: grid;
-        grid-template-columns: 2fr 5fr;
-        grid-template-rows: auto auto;
+        -ms-grid-columns: 2fr 5fr;
+            grid-template-columns: 2fr 5fr;
+        -ms-grid-rows: auto auto;
+            grid-template-rows: auto auto;
         grid-row-gap: 20px;
         grid-column-gap: 1em;
     }
 
     .matrix {
+        display: -ms-grid;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: auto auto;
+        -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        -ms-grid-rows: auto auto;
+            grid-template-rows: auto auto;
         grid-row-gap: 20px;
         grid-column-gap: 1em;
     }
@@ -48,7 +53,6 @@ aside > * {
     }
 }
 
-
 .codeWord {
     text-align: center;
     border: 1px solid #000;
@@ -58,7 +62,7 @@ aside > * {
 }
 
 .red {
-    background-color: #f00;
+    background-color: #f0f;
 }
 
 .blue {
