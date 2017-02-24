@@ -5,8 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Boardgames</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="codenames/player.html">Play Codenames</a>
+    <h1>Welches Spiel darf es heute sein?</h1>
+    <div id="app">
+        <div v-if='codenames.released' style="float: left; padding: 20px;">
+            <a :href="codenames.path + '/player.html'">
+                <img :src="'assets/images/' + codenames.img" width="300" alt="">
+            </a>
+            <span>{{codenames.author}}</span>
+            <span>{{codenames.playerAge}} years</span>
+            <span>{{codenames.playTime}} minutes</span>
+
+            <div class="">Users from DB</div>
+            <div class="users">Quirin</div>
+            <div class="users">Stefan</div>
+
+            <div class="usersToPlay"  style="height: 30px; width: 100px; border: 1px solid #000;"> <p>Drag me to my target</p></div>
+            <div class="usersToPlay" contentEditable="true" style="height: 30px; width: 100px; border: 1px solid #000;"></div>
+            </div>
+        <div v-if='iwdzEisenzeit.released' style="float: left; padding: 20px;">
+            <a href="#">
+                <img src="assets/images/iwdz-eisenzeit.jpg" width="300" alt="">
+            </a>
+        </div>
+        <div v-if='imhotep.released' style="float: left; padding: 20px;">
+            <a href="#">
+                <img src="assets/images/imhotep.jpg" width="300" alt="">
+            </a>
+        </div>
+        <div v-if='pigDice.released' style="float: left; padding: 20px;">
+            <a :href="pigDice.path + '/index.html'">
+                <img :src="'assets/images/' + pigDice.img" width="300" alt="">
+            </a>
+        </div>
+    </div>
+</div>
+
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="assets/scripts/jquery.js" charset="utf-8"></script>
+    <script src="assets/scripts/jquery-ui.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $( function() {
+            $( ".users" ).draggable();
+            $( ".usersToPlay" ).droppable({
+                classes: {
+                  "ui-droppable-hover": "ui-state-hover"
+                },
+                drop: function( event, ui ) {
+                  $( this )
+                    .addClass( "ui-state-highlight" )
+                      .html( "Dropped!" );
+                }
+            } );
+        });
+    </script>
+    <script src="assets/scripts/app.js" charset="utf-8"></script>
 </body>
 </html>
