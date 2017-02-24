@@ -30,17 +30,21 @@ function setup() {
     redFound = 0;
     blueFound = 0;
 
-    document.querySelector('.setupBtn').style.display = 'none';
+    // document.querySelector('.setupBtn').style.display = 'none';
     document.querySelector('.playGameBtn').style.display = 'inline-block';
 
     document.querySelector('.matrix').innerHTML = '';
 
-    const matrixArr = generateRandomNumberArray(25, codeWords.length);
+    var matrixArr = generateRandomNumberArray(25, codeWords.length);
     const arr2 = [...matrixArr];
     let randomIndexes = shuffleArray(arr2);
-    const firstTeamArr = randomIndexes.splice(0, 9);
+    var firstTeamArr = randomIndexes.splice(0, 9);
     const secondTeamArr = randomIndexes.splice(0, 8);
     const blackArr = randomIndexes.splice(0, 1);
+
+    var sid = '';
+    var actualColor = '';
+    var colorCount = 0;
 
 
     matrixArr.forEach(function(ele) {
@@ -48,19 +52,68 @@ function setup() {
         if (codeWords[ele] === undefined) {
             alert(ele);
         }
+
+        // IF RED
         if (firstTeamArr.indexOf(ele) > -1) {
             matrix.innerHTML += '<div class="codeWord red">' + codeWords[ele] + '</div>';
+            if (actualColor !== 'red') {
+                if (actualColor == 'blue') sid=sid + String.fromCharCode(64+colorCount);
+                else if (actualColor == 'yellow') sid=sid + String.fromCharCode(48+colorCount);
+                colorCount = 1;
+            } else {
+                colorCount++;
+            }
+            actualColor = 'red'
+        // IF BLUE
         } else if (secondTeamArr.indexOf(ele) > -1) {
             matrix.innerHTML += '<div class="codeWord blue">' + codeWords[ele] + '</div>';
+            if (actualColor !== 'blue') {
+                if (actualColor == 'red') sid += String.fromCharCode(96+colorCount);
+                else if (actualColor == 'yellow') sid += String.fromCharCode(48+colorCount);
+
+                colorCount = 1;
+            } else {
+
+                colorCount++;
+            }
+            actualColor = 'blue';
+        // IF BLACK
         } else if (blackArr.indexOf(ele) > -1) {
             matrix.innerHTML += '<div class="codeWord black">' + codeWords[ele] + '</div>';
+            if (actualColor == 'red') sid += String.fromCharCode(96+colorCount);
+            else if (actualColor == 'blue') sid += String.fromCharCode(64+colorCount);
+            else if (actualColor == 'yellow') sid += String.fromCharCode(48+colorCount);
+
+            sid += '0';
+            colorCount = 0;
+            actualColor = '';
+        // IF YELLOW
         } else {
             matrix.innerHTML += '<div class="codeWord yellow">' + codeWords[ele] + '</div>';
+            if (actualColor !== 'yellow') {
+                if (actualColor == 'red') sid += String.fromCharCode(96+colorCount);
+                else if (actualColor == 'blue') sid += String.fromCharCode(64+colorCount);
+                colorCount = 1;
+            } else {
+                colorCount++;
+            }
+            actualColor = 'yellow';
         }
     });
+    if (actualColor == 'red') sid += String.fromCharCode(96+colorCount);
+    else if (actualColor == 'blue') sid += String.fromCharCode(64+colorCount);
+    else if (actualColor == 'yellow') sid += String.fromCharCode(48+colorCount);
+
+    console.log(sid);
+    var encodedString = btoa(sid);
+
+    var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`http://192.168.178.31:3000/chief.html?sid=${encodedString}`)}`;
+    document.querySelector('.qrCodeImg').src = qrCodeImg;
 }
 
 function playGame() {
+    setup();
+
     document.querySelector('.playGameBtn').style.display = 'none';
     document.querySelector('.endTurnBtn').style.display = 'inline-block';
 
