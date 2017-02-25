@@ -129,7 +129,7 @@ function playGame() {
 
     for (var i = 0; i < codeWord.length; i++) {
         codeWord[i].classList.add('invisible');
-        
+
         codeWord[i].addEventListener('click', function(event) {
             if (!this.classList.contains('invisible')) {
                 return;
@@ -138,9 +138,9 @@ function playGame() {
             var ranNum = Math.round(Math.random());
 
             if (this.classList.contains('red')) {
-                this.style.backgroundImage = "url('./assets/images/agent-blue-" + ranNum + ".png')";
-            } else if (this.classList.contains('blue')) {
                 this.style.backgroundImage = "url('./assets/images/agent-red-" + ranNum + ".png')";
+            } else if (this.classList.contains('blue')) {
+                this.style.backgroundImage = "url('./assets/images/agent-blue-" + ranNum + ".png')";
             } else if (this.classList.contains('yellow')) {
                 this.style.backgroundImage = "url('./assets/images/observer-" + ranNum + ".png')";
             } else {
@@ -233,10 +233,12 @@ function checkWinning() {
     }
 }
 
-document.querySelector('.chiefOverlay').addEventListener('click', function() {
-    if (this.offsetParent === null) {
-        this.style.display = "flex";
-    } else {
-        this.style.display = "none";
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.chiefOverlay').addEventListener('click', function() {
+        if (this.offsetParent === null) {
+            this.style.display = "flex";
+        } else {
+            this.style.display = "none";
+        }
+    });
 });

@@ -154,10 +154,13 @@ aside > * {
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+    -webkit-transition: background-image 1s ease-in-out;
+    transition: background-image 1s ease-in-out;
 }
 
 .codeWord.invisible {
-    background: -moz-linear-gradient(top, #C8B182, #E7D9BE);
+    background: -webkit-linear-gradient(top, #C8B182, #E7D9BE);
+    background: linear-gradient(top, #C8B182, #E7D9BE);
     color: black;
 }
 
