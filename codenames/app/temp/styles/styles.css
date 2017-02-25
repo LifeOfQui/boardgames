@@ -1,12 +1,17 @@
 :root {
-    --max-size: 34;
-    --min-size: 18;
+    --max-size: 24;
+    --min-size: 12;
     --diff: calc(var(--max-size) - var(--min-size));
     --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
 }
 
 html {
     font-family: Roboto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 .settings {
@@ -24,6 +29,10 @@ html {
     left: 0;
     height: 100vh;
     width: 100vw;
+}
+
+.endTurnBtn, .chiefOverlayBtn {
+    width: 100%;
 }
 
 .btn {
@@ -44,13 +53,37 @@ html {
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.9)
 }
 
-.endTurnBtn, .chiefOverlayBtn {
-    width: 100%;
+.btn--small {
+    width: auto;
+    font-size: 15px;
+    padding: 12px;
+}
+
+.chiefOverlayBtn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+}
+
+.chiefOverlayBtn:hover {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
 }
 
 aside {
     text-align: center;
     position: relative;
+    width: 15vw;
+    float: left;
+    height: calc(100vh - 40px);
+    padding: 20px 0 20px 20px;
+}
+
+.matrix {
+    width: 80vw;
+    margin-left: 20vw;
 }
 
 aside > * {
@@ -97,70 +130,39 @@ aside > * {
 
 .codeWord {
     float: left;
-    width: 16%;
-    text-align: center;
-    border: 1px solid #000;
-    margin: 20px 10px;
-    padding: 20px 0;
-    font-size: 28px;
-}
-
-@supports ((display: -ms-grid) or (display: grid)) {
-    .wrapper {
-        display: -ms-grid;
-        display: grid;
-        -ms-grid-columns: 2fr 5fr;
-            grid-template-columns: 2fr 5fr;
-        -ms-grid-rows: auto auto;
-            grid-template-rows: auto auto;
-        grid-row-gap: 20px;
-        grid-column-gap: 1em;
-    }
-
-    .matrix {
-        display: -ms-grid;
-        display: grid;
-        -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        -ms-grid-rows: auto auto;
-            grid-template-rows: auto auto;
-        grid-row-gap: 20px;
-        grid-column-gap: 1em;
-    }
-
-    .codeWord {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-}
-
-.codeWord {
-    text-align: center;
-    border: 1px solid #000;
+    width: 14vw;
+    box-shadow: 3px 3px 6px rgba(0,0,0, 0.5);
+    border-radius: 2vmin;
+    font-weight: 300;
     font-size: var(--responsive);
-    padding: 3vw 0;
     cursor: pointer;
+    margin: 1vh 1vw;
+    height: 18vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
-.red {
-    background-color: #f00;
-}
+.codeWord span {}
 
-.blue {
-    background-color: #00f;
-}
-
-.black {
-    color: white;
-    background-color: #000;
-}
-
-.yellow {
-    background-color: yellow;
+.codeWord:not(.invisible) {
+    color: transparent;
 }
 
 .invisible {
-    background-color: transparent;
+    background: -moz-linear-gradient(top, #C8B182, #E7D9BE);
     color: black;
 }

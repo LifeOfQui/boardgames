@@ -35,7 +35,7 @@ body {
     outline: 1px solid #000;
     height: 16vmin;
     width: 16vmin;
-    background-color: grey;
+    background-color: #41413F;
     padding: 0;
     margin: 1vmin;
     border-radius: 3.5vmin;
@@ -43,6 +43,21 @@ body {
 }
 .codeWord:nth-child(5n+1) {
     clear: left;
+}
+.black:after {
+    content: "\00d7";
+    display: block;
+    font-family: Roboto;
+    font-size: 10vmin;
+    left: 56%;
+    position: relative;
+    text-shadow: 0 0 7px #bbb;
+    font-weight: 100;
+    top: 45%;
+    -webkit-transform: translateY(-50%) translateX(-50%) scale(1.6);
+            transform: translateY(-50%) translateX(-50%) scale(1.6);
+    width: 6.5vmin;
+    color: #222;
 }
 .red {
     background: -webkit-radial-gradient(50% 52% ellipse, #D13624 1vmin, #F54432 2.7vmin, rgba(255,255,255, 0.4) 3.5vmin, transparent 4vmin), -moz-radial-gradient(center, ellipse cover,  #FF7B64 0%, #F92C22 100%);

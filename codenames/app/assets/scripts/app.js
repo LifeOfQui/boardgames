@@ -55,7 +55,7 @@ function setup() {
 
         // IF RED
         if (firstTeamArr.indexOf(ele) > -1) {
-            matrix.innerHTML += '<div class="codeWord red">' + codeWords[ele] + '</div>';
+            matrix.innerHTML += '<div class="codeWord red"><span>' + codeWords[ele] + '</span></div>';
             if (actualColor !== 'red') {
                 if (actualColor == 'blue') sid=sid + String.fromCharCode(64+colorCount);
                 else if (actualColor == 'yellow') sid=sid + String.fromCharCode(48+colorCount);
@@ -66,7 +66,7 @@ function setup() {
             actualColor = 'red'
         // IF BLUE
         } else if (secondTeamArr.indexOf(ele) > -1) {
-            matrix.innerHTML += '<div class="codeWord blue">' + codeWords[ele] + '</div>';
+            matrix.innerHTML += '<div class="codeWord blue"><span>' + codeWords[ele] + '</span></div>';
             if (actualColor !== 'blue') {
                 if (actualColor == 'red') sid += String.fromCharCode(96+colorCount);
                 else if (actualColor == 'yellow') sid += String.fromCharCode(48+colorCount);
@@ -79,7 +79,7 @@ function setup() {
             actualColor = 'blue';
         // IF BLACK
         } else if (blackArr.indexOf(ele) > -1) {
-            matrix.innerHTML += '<div class="codeWord black">' + codeWords[ele] + '</div>';
+            matrix.innerHTML += '<div class="codeWord black"><span>' + codeWords[ele] + '</span></div>';
             if (actualColor == 'red') sid += String.fromCharCode(96+colorCount);
             else if (actualColor == 'blue') sid += String.fromCharCode(64+colorCount);
             else if (actualColor == 'yellow') sid += String.fromCharCode(48+colorCount);
@@ -89,7 +89,7 @@ function setup() {
             actualColor = '';
         // IF YELLOW
         } else {
-            matrix.innerHTML += '<div class="codeWord yellow">' + codeWords[ele] + '</div>';
+            matrix.innerHTML += '<div class="codeWord yellow"><span>' + codeWords[ele] + '</span></div>';
             if (actualColor !== 'yellow') {
                 if (actualColor == 'red') sid += String.fromCharCode(96+colorCount);
                 else if (actualColor == 'blue') sid += String.fromCharCode(64+colorCount);
@@ -104,11 +104,10 @@ function setup() {
     else if (actualColor == 'blue') sid += String.fromCharCode(64+colorCount);
     else if (actualColor == 'yellow') sid += String.fromCharCode(48+colorCount);
 
-    console.log(sid);
+
     var encodedString = btoa(sid);
     var path = `${window.location.protocol + '//' + window.location.host + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
-    var path = `${window.location.protocol + '//' + window.location.host + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
-    console.log(path);
+
     var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`${path}/chief.html?sid=${encodedString}`)}`;
     document.querySelector('.qrCodeImg').src = qrCodeImg;
     document.querySelector('.chiefURL').innerHTML = '<a href="'+path+'/chief.html?sid='+encodedString+'" target=_blank>Link</a>';
@@ -130,8 +129,23 @@ function playGame() {
 
     for (var i = 0; i < codeWord.length; i++) {
         codeWord[i].classList.add('invisible');
+        
         codeWord[i].addEventListener('click', function(event) {
+            if (!this.classList.contains('invisible')) {
+                return;
+            }
             this.classList.remove('invisible');
+            var ranNum = Math.round(Math.random());
+
+            if (this.classList.contains('red')) {
+                this.style.backgroundImage = "url('./assets/images/agent-blue-" + ranNum + ".png')";
+            } else if (this.classList.contains('blue')) {
+                this.style.backgroundImage = "url('./assets/images/agent-red-" + ranNum + ".png')";
+            } else if (this.classList.contains('yellow')) {
+                this.style.backgroundImage = "url('./assets/images/observer-" + ranNum + ".png')";
+            } else {
+                this.style.backgroundImage = "url('./assets/images/assassin.png')";
+            }
 
             if (playingTeamNr === 0 && this.classList.contains('red')) {
                 redFound++;
@@ -139,6 +153,11 @@ function playGame() {
             } else if (playingTeamNr === 0 && this.classList.contains('blue')) {
                 blueFound++;
                 checkWinning();
+                playingTeamNr = 1;
+                document.querySelector('.teamPlayingColor').innerHTML = 'TEAM BLUE IS PLAYING';
+                document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(49, 67, 113)';
+                return;
+            } else if (playingTeamNr === 0 && this.classList.contains('yellow')) {
                 playingTeamNr = 1;
                 document.querySelector('.teamPlayingColor').innerHTML = 'TEAM BLUE IS PLAYING';
                 document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(49, 67, 113)';
@@ -155,10 +174,14 @@ function playGame() {
                 document.querySelector('.teamPlayingColor').innerHTML = 'TEAM RED IS PLAYING';
                 document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(156, 0, 6)';
                 return;
+            } else if (playingTeamNr === 1 && this.classList.contains('yellow')) {
+                playingTeamNr = 0;
+                document.querySelector('.teamPlayingColor').innerHTML = 'TEAM RED IS PLAYING';
+                document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(156, 0, 6)';
+                return;
             }
 
             if (this.classList.contains('black')) {
-                document.querySelector('.matrix').innerHTML = '';
                 if (playingTeamNr === 0) {
                     document.querySelector('.teamPlayingColor').innerHTML = 'TEAM BLUE WINS!';
                     document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(49, 67, 113)';

@@ -1,12 +1,17 @@
 :root {
-    --max-size: 34;
-    --min-size: 18;
+    --max-size: 24;
+    --min-size: 12;
     --diff: calc(var(--max-size) - var(--min-size));
     --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
 }
 
 html {
     font-family: Roboto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 .settings {
@@ -20,6 +25,11 @@ html {
     width: 100vw;
 }
 
+.endTurnBtn, .chiefOverlayBtn {
+    width: 100%;
+}
+
+
 .btn {
     background-color: lightgrey;
     border: none;
@@ -32,21 +42,43 @@ html {
     -o-transition: all 0.3s;
     transition: all 0.3s;
     margin-bottom: 15px;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(3px);
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.9)
+    }
+
+    &--small {
+        width: auto;
+        font-size: 15px;
+        padding: 12px;
+    }
 }
 
-.btn:hover {
-    cursor: pointer;
-    transform: translateY(3px);
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.9)
-}
+.chiefOverlayBtn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 
-.endTurnBtn, .chiefOverlayBtn {
-    width: 100%;
+    &:hover {
+        transform: translateX(-50%);
+    }
 }
 
 aside {
     text-align: center;
     position: relative;
+    width: 15vw;
+    float: left;
+    height: calc(100vh - 40px);
+    padding: 20px 0 20px 20px;
+}
+
+.matrix {
+    width: 80vw;
+    margin-left: 20vw;
 }
 
 aside > * {
@@ -86,65 +118,31 @@ aside > * {
 
 .codeWord {
     float: left;
-    width: 16%;
-    text-align: center;
-    border: 1px solid #000;
-    margin: 20px 10px;
-    padding: 20px 0;
-    font-size: 28px;
-}
-
-@supports (display: grid) {
-    .wrapper {
-        display: grid;
-        grid-template-columns: 2fr 5fr;
-        grid-template-rows: auto auto;
-        grid-row-gap: 20px;
-        grid-column-gap: 1em;
-    }
-
-    .matrix {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: auto auto;
-        grid-row-gap: 20px;
-        grid-column-gap: 1em;
-    }
-
-    .codeWord {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-}
-
-
-.codeWord {
-    text-align: center;
-    border: 1px solid #000;
+    width: 14vw;
+    box-shadow: 3px 3px 6px rgba(0,0,0, 0.5);
+    border-radius: 2vmin;
+    font-weight: 300;
     font-size: var(--responsive);
-    padding: 3vw 0;
     cursor: pointer;
-}
+    margin: 1vh 1vw;
+    height: 18vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    user-select: none;
 
-.red {
-    background-color: #f00;
-}
+    & span {
+    }
 
-.blue {
-    background-color: #00f;
-}
-
-.black {
-    color: white;
-    background-color: #000;
-}
-
-.yellow {
-    background-color: yellow;
+    &:not(.invisible) {
+        color: transparent;
+    }
 }
 
 .invisible {
-    background-color: transparent;
+    background: -moz-linear-gradient(top, #C8B182, #E7D9BE);
     color: black;
 }
