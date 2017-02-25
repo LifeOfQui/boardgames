@@ -107,22 +107,24 @@ function setup() {
     console.log(sid);
     var encodedString = btoa(sid);
     var path = `${window.location.protocol + '//' + window.location.host + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
-    var path = `${window.location.protocol + '//192.168.178.37:3000' + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
+    var path = `${window.location.protocol + '//' + window.location.host + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
     console.log(path);
     var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`${path}/chief.html?sid=${encodedString}`)}`;
     document.querySelector('.qrCodeImg').src = qrCodeImg;
+    document.querySelector('.chiefURL').innerHTML = '<a href="'+path+'/chief.html?sid='+encodedString+'" target=_blank>Link</a>';
 }
 
 function playGame() {
     setup();
 
-    document.querySelector('.playGameBtn').style.display = 'none';
+    document.querySelector('.settings').style.display = 'none';
     document.querySelector('.endTurnBtn').style.display = 'inline-block';
+    document.querySelector('.chiefOverlayBtn').style.display = 'inline-block';
 
     var codeWord = document.querySelectorAll('.codeWord');
 
     document.querySelector('.teamPlayingColor').innerHTML = 'TEAM RED IS PLAYING';
-    document.querySelector('.teamPlayingColor').style.backgroundColor = 'red';
+    document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(156, 0, 6)';
 
     for (var i = 0; i < codeWord.length; i++) {
         codeWord[i].classList.add('invisible');
@@ -137,7 +139,7 @@ function playGame() {
                 checkWinning();
                 playingTeamNr = 1;
                 document.querySelector('.teamPlayingColor').innerHTML = 'TEAM BLUE IS PLAYING';
-                document.querySelector('.teamPlayingColor').style.backgroundColor = 'blue';
+                document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(49, 67, 113)';
                 return;
             }
 
@@ -149,7 +151,7 @@ function playGame() {
                 checkWinning();
                 playingTeamNr = 0;
                 document.querySelector('.teamPlayingColor').innerHTML = 'TEAM RED IS PLAYING';
-                document.querySelector('.teamPlayingColor').style.backgroundColor = 'red';
+                document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(156, 0, 6)';
                 return;
             }
 
@@ -157,13 +159,13 @@ function playGame() {
                 document.querySelector('.matrix').innerHTML = '';
                 if (playingTeamNr === 0) {
                     document.querySelector('.teamPlayingColor').innerHTML = 'TEAM BLUE WINS!';
-                    document.querySelector('.teamPlayingColor').style.backgroundColor = 'blue';
+                    document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(49, 67, 113)';
                     document.querySelector('.setupBtn').style.display = 'inline-block';
                     document.querySelector('.playGameBtn').style.display = 'none';
                     document.querySelector('.endTurnBtn').style.display = 'none';
                 } else {
                     document.querySelector('.teamPlayingColor').innerHTML = 'TEAM RED WINS!';
-                    document.querySelector('.teamPlayingColor').style.backgroundColor = 'red';
+                    document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(156, 0, 6)';
                     document.querySelector('.setupBtn').style.display = 'inline-block';
                     document.querySelector('.playGameBtn').style.display = 'none';
                     document.querySelector('.endTurnBtn').style.display = 'none';
@@ -178,11 +180,11 @@ function endTurn() {
     if (playingTeamNr === 0) {
         playingTeamNr = 1;
         document.querySelector('.teamPlayingColor').innerHTML = 'TEAM BLUE IS PLAYING';
-        document.querySelector('.teamPlayingColor').style.backgroundColor = 'blue';
+        document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(49, 67, 113)';
     } else {
         playingTeamNr = 0;
         document.querySelector('.teamPlayingColor').innerHTML = 'TEAM RED IS PLAYING';
-        document.querySelector('.teamPlayingColor').style.backgroundColor = 'red';
+        document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(156, 0, 6)';
     }
 }
 
@@ -192,16 +194,24 @@ function checkWinning() {
     if (redFound === 9) {
         document.querySelector('.matrix').innerHTML = '';
         document.querySelector('.teamPlayingColor').innerHTML = 'TEAM RED WINS!';
-        document.querySelector('.teamPlayingColor').style.backgroundColor = 'red';
+        document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(156, 0, 6)';
         document.querySelector('.setupBtn').style.display = 'inline-block';
         document.querySelector('.playGameBtn').style.display = 'none';
         document.querySelector('.endTurnBtn').style.display = 'none';
     } else if (blueFound === 8) {
         document.querySelector('.matrix').innerHTML = '';
         document.querySelector('.teamPlayingColor').innerHTML = 'TEAM BLUE WINS!';
-        document.querySelector('.teamPlayingColor').style.backgroundColor = 'blue';
+        document.querySelector('.teamPlayingColor').style.backgroundColor = 'rgb(49, 67, 113)';
         document.querySelector('.setupBtn').style.display = 'inline-block';
         document.querySelector('.playGameBtn').style.display = 'none';
         document.querySelector('.endTurnBtn').style.display = 'none';
     }
 }
+
+document.querySelector('.chiefOverlay').addEventListener('click', function() {
+    if (this.offsetParent === null) {
+        this.style.display = "flex";
+    } else {
+        this.style.display = "none";
+    }
+});

@@ -5,6 +5,49 @@
     --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
 }
 
+html {
+    font-family: Roboto;
+}
+
+.settings {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.btn {
+    background-color: lightgrey;
+    border: none;
+    padding: 15px 32px;
+    font-size: var(--responsive);
+    box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.9);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    margin-bottom: 15px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    -webkit-transform: translateY(3px);
+            transform: translateY(3px);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.9)
+}
+
+.endTurnBtn, .chiefOverlayBtn {
+    width: 100%;
+}
+
 aside {
     text-align: center;
 }
@@ -13,14 +56,52 @@ aside > * {
     padding: 20px 0;
 }
 
+.chiefOverlay {
+    background-color: lightgrey;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    z-index:2;
+    opacity:0.98;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: var(--responsive);
+}
+
+.chiefOverlayContent {
+    background-color: white;
+    opacity: 1;
+    z-index:3;
+    margin: 100px;
+    padding: 24px;
+    text-align:center;
+}
+
+.chiefOverlayContent > span {
+    display: block;
+}
+
+.chiefOverlayContent > span.chiefURL {
+    margin-bottom: 15px;
+}
+
 .codeWord {
-   float: left;
-   width: 16%;
-   text-align: center;
-   border: 1px solid #000;
-   margin: 20px 10px;
-   padding: 20px 0;
-   font-size: 28px;
+    float: left;
+    width: 16%;
+    text-align: center;
+    border: 1px solid #000;
+    margin: 20px 10px;
+    padding: 20px 0;
+    font-size: 28px;
 }
 
 @supports ((display: -ms-grid) or (display: grid)) {
