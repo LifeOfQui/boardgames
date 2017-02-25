@@ -56,11 +56,24 @@ body {
     color: #222;
 }
 .red {
-    background: radial-gradient(ellipse at 50% 52%, #D13624 1vmin, #F54432 2.7vmin, rgba(255,255,255, 0.4) 3.5vmin, transparent 4vmin), -moz-radial-gradient(center, ellipse cover,  #FF7B64 0%, #F92C22 100%);
+    background-image: radial-gradient(center, ellipse cover,  #FF7B64 0%, #F92C22 100%);
+}
+.red:after {
+    content: '';
+    width: 6.5vmin;
+    height: 6.5vmin;
+    left: 51%;
+    top: 51%;
+    background-image: radial-gradient(ellipse at 50% 52%, #F54432 1vmin, #F92C22 2.7vmin, rgba(255,255,255, 0.4) 3.5vmin, transparent 4vmin);
+    display: block;
+    transform: translateY(-50%) translateX(-50%);
+    position: relative;
+    border-radius: 50%;
+    box-shadow: 0px 0px 18px rgba(255,255,255, 0.7);
 }
 
 .blue {
-    background-image: -moz-radial-gradient(center, ellipse cover,  #4EC4E7 0%, #1C6179 100%);
+    background-image: radial-gradient(center, ellipse cover,  #4EC4E7 0%, #1C6179 100%);
 }
 .blue:after {
     content: '';

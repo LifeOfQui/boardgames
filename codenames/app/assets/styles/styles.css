@@ -134,15 +134,12 @@ aside > * {
     background-repeat: no-repeat;
     user-select: none;
 
-    & span {
+    &.invisible {
+        background: -moz-linear-gradient(top, #C8B182, #E7D9BE);
+        color: black;
     }
 
     &:not(.invisible) {
         color: transparent;
     }
-}
-
-.invisible {
-    background: -moz-linear-gradient(top, #C8B182, #E7D9BE);
-    color: black;
 }

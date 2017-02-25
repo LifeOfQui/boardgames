@@ -156,13 +156,11 @@ aside > * {
             user-select: none;
 }
 
-.codeWord span {}
+.codeWord.invisible {
+    background: -moz-linear-gradient(top, #C8B182, #E7D9BE);
+    color: black;
+}
 
 .codeWord:not(.invisible) {
     color: transparent;
-}
-
-.invisible {
-    background: -moz-linear-gradient(top, #C8B182, #E7D9BE);
-    color: black;
 }
