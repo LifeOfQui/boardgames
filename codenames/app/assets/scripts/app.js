@@ -107,6 +107,7 @@ function setup() {
     console.log(sid);
     var encodedString = btoa(sid);
     var path = `${window.location.protocol + '//' + window.location.host + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
+    var path = `${window.location.protocol + '//192.168.178.37:3000' + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
     console.log(path);
     var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`${path}/chief.html?sid=${encodedString}`)}`;
     document.querySelector('.qrCodeImg').src = qrCodeImg;

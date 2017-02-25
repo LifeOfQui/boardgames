@@ -13,7 +13,6 @@ var urlParams;
 var sid = urlParams.sid;
 
 var decodedString = atob(sid);
-console.log(decodedString);
 
 decodedString.split('').forEach(function (ele) {
     var matrix = document.querySelector('.matrix');
@@ -33,5 +32,14 @@ decodedString.split('').forEach(function (ele) {
         for (var i = 0; i < ascii-96; i++) {
             matrix.innerHTML += '<div class="codeWord red"></div>';
         }
+    }
+});
+
+document.querySelector('html').addEventListener('click', function() {
+    var elOverlay = document.querySelector('.overlay');
+    if (elOverlay.offsetParent === null) {
+        elOverlay.style.display = "flex";
+    } else {
+        elOverlay.style.display = "none";
     }
 });
