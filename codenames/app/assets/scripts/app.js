@@ -210,7 +210,10 @@ function playGame() {
             }
 
             if (this.classList.contains('black')) {
-                setDown(!playingTeamNr);
+                if (playingTeamNr === 0)
+                    setDown(1);
+                else
+                    setDown(0);
             }
         });
     }
@@ -226,7 +229,6 @@ function endTurn() {
         playingTeamNr = 0;
         document.querySelector('.blueTeamColor').classList.add('disabled');
         document.querySelector('.redTeamColor').classList.remove('disabled');
-
     }
 }
 
