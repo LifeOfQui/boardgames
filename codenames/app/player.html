@@ -23,15 +23,16 @@
         </div>
     </div>
     <div class="wrapper">
-        <aside class="">
-            <div class="teamPlayingColor"></div>
-            <div class="redTeamCount" style="display: none;">TEAM RED: 0 Agenten kontaktiert!</div>
-            <div class="blueTeamCount" style="display: none;">TEAM BLUE: 0 Agenten kontaktiert!</div>
+        <aside class="aside">
+            <div class="teamPlayingColor redTeamColor" style="display: none;"></div>
+            <div class="redTeamCount" style="display: none;"></div>
+            <div class="teamPlayingColor blueTeamColor" style="display: none;"></div>
+            <div class="blueTeamCount" style="display: none;"></div>
 
             <button class="btn endTurnBtn" onclick="endTurn()" style="display: none;">End turn</button>
+
+            <button class="btn startNewGameAsideBtn" onclick="playGame()" style="display: none;">Start Game</button>
             <button class="btn btn--small chiefOverlayBtn" onclick="javascript:document.querySelector('.chiefOverlay').style.display='flex'" style="display: none;">chief login</button>
-
-
         </aside>
 
         <main class="matrix"></main>

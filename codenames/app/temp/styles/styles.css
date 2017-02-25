@@ -81,6 +81,29 @@ aside {
     padding: 20px 0 20px 20px;
 }
 
+aside .teamPlayingColor {
+    padding-top: 64%;
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 2vmin;
+}
+
+aside .redTeamColor {
+    background-image: url('../images/red-team.jpeg');
+}
+
+aside .redTeamColor.disabled {
+    background-image: url('../images/red-team-disabled.jpeg');
+}
+
+aside .blueTeamColor {
+    background-image: url('../images/blue-team.jpeg');
+}
+
+aside .blueTeamColor.disabled {
+    background-image: url('../images/blue-team-disabled.jpeg');
+}
+
 .matrix {
     width: 80vw;
     margin-left: 20vw;
@@ -156,11 +179,12 @@ aside > * {
             user-select: none;
     -webkit-transition: background-image 1s ease-in-out;
     transition: background-image 1s ease-in-out;
+    position: relative;
 }
 
 .codeWord.invisible {
     background: -webkit-linear-gradient(top, #C8B182, #E7D9BE);
-    background: linear-gradient(top, #C8B182, #E7D9BE);
+    background: linear-gradient(to bottom, #C8B182, #E7D9BE);
     color: black;
 }
 

@@ -32,7 +32,6 @@ body {
 }
 .codeWord {
     float: left;
-    outline: 1px solid #000;
     height: 16vmin;
     width: 16vmin;
     background-color: #41413F;
