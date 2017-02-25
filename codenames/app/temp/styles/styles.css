@@ -7,10 +7,19 @@
 
 aside {
     text-align: center;
+    position: relative;
 }
 
 aside > * {
     padding: 20px 0;
+}
+
+.qrCodeImg {
+    bottom: 0;
+    left: 50%;
+    position: absolute;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
 }
 
 .codeWord {

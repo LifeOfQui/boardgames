@@ -116,6 +116,8 @@ function playGame() {
     setup();
 
     document.querySelector('.playGameBtn').style.display = 'none';
+    document.querySelector('.redTeamCount').style.display = 'block';
+    document.querySelector('.blueTeamCount').style.display = 'block';
     document.querySelector('.endTurnBtn').style.display = 'inline-block';
 
     var codeWord = document.querySelectorAll('.codeWord');
