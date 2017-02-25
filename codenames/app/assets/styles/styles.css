@@ -46,6 +46,7 @@ html {
 
 aside {
     text-align: center;
+    position: relative;
 }
 
 aside > * {

@@ -118,6 +118,8 @@ function playGame() {
     setup();
 
     document.querySelector('.settings').style.display = 'none';
+    document.querySelector('.redTeamCount').style.display = 'block';
+    document.querySelector('.blueTeamCount').style.display = 'block';
     document.querySelector('.endTurnBtn').style.display = 'inline-block';
     document.querySelector('.chiefOverlayBtn').style.display = 'inline-block';
 

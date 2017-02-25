@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     colorFunction = require("postcss-color-function");
 
 gulp.task('styles', function () {
-    return gulp.src('./app/assets/styles/styles.css')
+    return gulp.src('./app/assets/styles/*.css')
         .pipe(postcss([cssImport, mixins, cssvars, colorFunction, nested, hexrgba, autoprefixer]))
         .on('error', function (errorInfo) {
             console.log(errorInfo.toString());
