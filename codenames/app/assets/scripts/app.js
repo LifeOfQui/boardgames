@@ -13,7 +13,7 @@ function shuffleArray(array) {
 function generateRandomNumberArray(lengthOfRandomNumberArray, range) {
     var arr = [];
     while(arr.length < lengthOfRandomNumberArray){
-       var randomnumber = Math.ceil(Math.random() * range - 1)
+       var randomnumber = Math.ceil(Math.random() * range - 1);
        if(arr.indexOf(randomnumber) > -1) continue;
        arr[arr.length] = randomnumber;
     }
@@ -35,8 +35,11 @@ function setup() {
     document.querySelector('.matrix').innerHTML = '';
 
     const matrixArr = generateRandomNumberArray(25, codeWords.length);
-    const arr2 = [...matrixArr];
-    let randomIndexes = shuffleArray(arr2);
+    var arr2 = [];
+    for (var i = 0; i < matrixArr.length; i++) {
+        arr2.push(matrixArr[i]);
+    }
+    var randomIndexes = shuffleArray(arr2);
     const firstTeamArr = randomIndexes.splice(0, 9);
     const secondTeamArr = randomIndexes.splice(0, 8);
     const blackArr = randomIndexes.splice(0, 1);
@@ -52,7 +55,7 @@ function setup() {
             alert(ele);
         }
 
-        // IF RED
+
         if (firstTeamArr.indexOf(ele) > -1) {
             matrix.innerHTML += '<div class="codeWord red"><span>' + codeWords[ele] + '</span></div>';
             if (actualColor !== 'red') {
@@ -62,8 +65,8 @@ function setup() {
             } else {
                 colorCount++;
             }
-            actualColor = 'red'
-        // IF BLUE
+            actualColor = 'red';
+
         } else if (secondTeamArr.indexOf(ele) > -1) {
             matrix.innerHTML += '<div class="codeWord blue"><span>' + codeWords[ele] + '</span></div>';
             if (actualColor !== 'blue') {
@@ -76,7 +79,7 @@ function setup() {
                 colorCount++;
             }
             actualColor = 'blue';
-        // IF BLACK
+
         } else if (blackArr.indexOf(ele) > -1) {
             matrix.innerHTML += '<div class="codeWord black"><span>' + codeWords[ele] + '</span></div>';
             if (actualColor == 'red') sid += String.fromCharCode(96+colorCount);
@@ -86,7 +89,7 @@ function setup() {
             sid += '0';
             colorCount = 0;
             actualColor = '';
-        // IF YELLOW
+
         } else {
             matrix.innerHTML += '<div class="codeWord yellow"><span>' + codeWords[ele] + '</span></div>';
             if (actualColor !== 'yellow') {
@@ -105,9 +108,9 @@ function setup() {
 
 
     var encodedString = btoa(sid);
-    var path = `${window.location.protocol + '//' + window.location.host + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))}`;
+    var path = window.location.protocol + '//' + window.location.host + window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"));
 
-    var qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(`${path}/chief.html?sid=${encodedString}`)}`;
+    var qrCodeImg = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(" + path + "/chief.html?sid=" + encodedString +")";
     document.querySelector('.qrCodeImg').src = qrCodeImg;
     document.querySelector('.chiefURL').innerHTML = '<a href="'+path+'/chief.html?sid='+encodedString+'" target=_blank>Link</a>';
 
@@ -154,7 +157,7 @@ function playGame() {
     for (var i = 0; i < codeWord.length; i++) {
         codeWord[i].classList.add('invisible');
 
-        codeWord[i].addEventListener('click', function(event) {
+        codeWord[i].addEventListener('click', function() {
             if (!this.classList.contains('invisible') || gameOver) {
                 return;
             }

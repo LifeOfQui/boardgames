@@ -12,6 +12,7 @@
 node_modules/
 .tmp/
 .idea/
+*.iml
 
 # OS or Editor folders
 .DS_Store
